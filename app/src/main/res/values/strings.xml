@@ -11,4 +11,6 @@
     <string name="episode_six">The End</string>
     <string name="episode_seven">The Comeback or will it?</string>
     <string name="details">Details: %s</string>
+    <string name="empty_deleted_movies_list_message">Sorry honey, nothing to add. Try deleting first</string>
+    <string name="empty_movie_list_message">You first need to add them to delete them</string>
 </resources>

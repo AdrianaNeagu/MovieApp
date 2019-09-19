@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
     ArrayList<Movie> movieList;
+    ArrayList<Movie> deletedMovies = new ArrayList<>();
     Context context;
 
     public MovieAdapter(ArrayList<Movie> movieList) {
@@ -45,8 +46,27 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     }
 
     public void removeFirstItem() {
-        movieList.remove(0);
-        notifyDataSetChanged();
+        if(!movieList.isEmpty()) {
+            deletedMovies.add(movieList.get(0));
+            movieList.remove(0);
+            notifyDataSetChanged();
+        } else {
+            Toast.makeText(context, R.string.empty_movie_list_message, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void addDeletedElement() {
+        if(!deletedMovies.isEmpty()) {
+            if(movieList.isEmpty()) {
+                movieList.add(0, deletedMovies.get(0));
+            } else {
+                movieList.add(1, deletedMovies.get(0));
+            }
+            deletedMovies.remove(0);
+            notifyDataSetChanged();
+        } else {
+            Toast.makeText(context, R.string.empty_deleted_movies_list_message, Toast.LENGTH_SHORT).show();
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -66,7 +86,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         }
 
         private void bind(Movie movie) {
-            Glide.with(context).load(movie.getMovieImage()).into(movieImage);
+            Glide.with(context).load(movie.getMovieImage()).centerCrop().into(movieImage);
             movieEpisode.setText(movie.getMovieEpisodeName());
             movieName.setText(movie.getMovieName());
 

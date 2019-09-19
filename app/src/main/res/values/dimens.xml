@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="image_height">180dp</dimen>
+    <dimen name="card_view_padding">12dp</dimen>
+    <dimen name="elevation_and_radius">4dp</dimen>
+    <dimen name="padding">8dp</dimen>
+    <dimen name="movie_title_text">24sp</dimen>
+    <dimen name="separator_size">1dp</dimen>
+</resources>
